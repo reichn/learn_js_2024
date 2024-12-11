@@ -16,4 +16,19 @@ let arrayToList = function (x) {
   return res;
 };
 
+let listToArray = function (x) {
+  res = [];
+  stepIn = x;
+
+  while (stepIn["value"]) {
+    res.push(stepIn["value"]);
+    if (stepIn["rest"]) {
+      stepIn = stepIn["rest"];
+    } else {
+      return res;
+    }
+  }
+};
+
 console.log(arrayToList([10, 20])); // → {value: 10, rest: {value: 20, rest: null}}
+console.log(listToArray(arrayToList([10, 20, 30]))); // → [10, 20, 30]

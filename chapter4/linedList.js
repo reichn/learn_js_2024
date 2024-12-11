@@ -30,5 +30,29 @@ let listToArray = function (x) {
   }
 };
 
+let prepend = function (a, x) {
+  res = {};
+  res["value"] = a;
+  res["rest"] = JSON.parse(JSON.stringify(x));
+  return res;
+};
+
+let nth = function (x, a) {
+  temp = x;
+  for (i = 0; i <= a; i++) {
+    if (temp["value"]) {
+      if (i == a) {
+        return temp["value"];
+      }
+    }
+    if (temp["rest"]) {
+      temp = temp["rest"];
+    }
+  }
+  return undefined;
+};
+
 console.log(arrayToList([10, 20])); // → {value: 10, rest: {value: 20, rest: null}}
 console.log(listToArray(arrayToList([10, 20, 30]))); // → [10, 20, 30]
+console.log(prepend(10, prepend(20, null))); // → {value: 10, rest: {value: 20, rest: null}}
+console.log(nth(arrayToList([10, 20, 30]), 1)); // → 20

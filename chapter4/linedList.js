@@ -52,7 +52,19 @@ let nth = function (x, a) {
   return undefined;
 };
 
+let nthRecur = function (x, a) {
+  if (a != 0 && !x["rest"]) {
+    return undefined;
+  } else if (a == 0) {
+    // res = x["value"];
+    return x["value"];
+  } else if (a != 0 && x["rest"]) {
+    return nthRecur(x["rest"], a - 1);
+  }
+};
+
 console.log(arrayToList([10, 20])); // → {value: 10, rest: {value: 20, rest: null}}
 console.log(listToArray(arrayToList([10, 20, 30]))); // → [10, 20, 30]
 console.log(prepend(10, prepend(20, null))); // → {value: 10, rest: {value: 20, rest: null}}
 console.log(nth(arrayToList([10, 20, 30]), 1)); // → 20
+console.log(nthRecur(arrayToList([10, 20, 30]), 1)); // → 20
